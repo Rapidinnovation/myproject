@@ -24,9 +24,9 @@ phases:
       - echo Pushing the Docker image
       - aws ecr get-login-password | docker login --username AWS --password-stdin 798552129574.dkr.ecr.us-east-1.amazonaws.com
       - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG 
+      #- docker push $REPOSITORY_URI:$IMAGE_TAG 
       - echo Writing image definitions file...
-      - printf '[{"name":"nodeapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"nodeapp","imageUri":"%s"}]' $REPOSITORY_URI:latest > imagedefinitions.json
       - cat imagedefinitions.json 
 artifacts:
    files: imagedefinitions.json
